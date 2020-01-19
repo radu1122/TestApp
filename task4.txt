@@ -1,0 +1,1 @@
+cat /etc/passwd | grep -e "/bin/sh" -e "/bin/bash" -e "/bin/rbash" -e "/bin/dash" -e "/usr/bin/tmux" -e "/usr/bin/screen" -e "/bin/x"  | cut -d":" -f1 | sort

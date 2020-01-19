@@ -1,0 +1,15 @@
+#!/bin/bash
+field="name_of_computer,timestamp,percent_cpu_usage_inSystemAtThisTime,bytes_of_mem_usage_inSyst$
+location="/home/student/system_monitor.csv"
+printf "$field\n" >> $location
+for i in `seq 1 10`;
+do
+        name=hostname;
+        time=date;
+        cpu=uptime | cut -d" " -f14;
+        mem=free --kilo | grep "Mem" | tr -s " " | cut -d" " -f3;
+        rx=ifconfig -v enp0s3 | grep "RX packets" | tr -s " " | cut -d" " -f6;
+        tx=ifconfig -v enp0s3 | grep "TX packets" | tr -s " " | cut -d" " -f6;
+        printf "$name,$time,$cpu,$mem,$tx,$rx\n" >> $location;
+done 
+
